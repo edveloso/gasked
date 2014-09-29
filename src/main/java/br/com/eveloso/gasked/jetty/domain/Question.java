@@ -8,24 +8,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 
 @Entity
-public class Question {
+public class Question  {
 
 	@Id @GeneratedValue
 	private Integer id;
 	
 	private String description;
-	
-	@Transient
-	private Boolean correctAnswered;
 
-	@OneToMany(mappedBy="question", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="question", fetch=FetchType.LAZY)
 	@Cascade(value=CascadeType.ALL)
 	private List<Alternative> alternatives;
 	
@@ -76,28 +72,4 @@ public class Question {
 		this.alternatives = alternatives;
 	}
 
-	public Boolean getCorrectAnswered() {
-		return correctAnswered;
-	}
-
-	public void setCorrectAnswered(Boolean correctAnswered) {
-		this.correctAnswered = correctAnswered;
-	}
-
-	@Override
-	public String toString() {
-		return "Question ["
-				+ (id != null ? "id=" + id + ", " : "")
-				+ (description != null ? "description=" + description + ", "
-						: "")
-				+ (correctAnswered != null ? "correctAnswered="
-						+ correctAnswered + ", " : "")
-				+ (alternatives != null ? "alternatives=" + alternatives + ", "
-						: "")
-				+ (category != null ? "category=" + category : "") + "]";
-	}
-	
-	
-
-	
 }

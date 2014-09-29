@@ -2,14 +2,14 @@ package br.com.eveloso.gasked.jetty.dto;
 
 import java.util.List;
 
-import br.com.eveloso.gasked.jetty.domain.Question;
 
-
-public class PartidaDTO {
+public class PlayerDTO {
+	
+	private String name;
 	
 	private Integer questionCount;
 	
-	private List<Question> questions;
+	private List<QuestionDTO> questions;
 
 	public Integer getQuestionCount() {
 		return questionCount;
@@ -19,12 +19,20 @@ public class PartidaDTO {
 		this.questionCount = questionCount;
 	}
 
-	public List<Question> getQuestions() {
+	public List<QuestionDTO> getQuestions() {
 		return questions;
 	}
 
-	public void setQuestions(List<Question> questions) {
+	public void setQuestions(List<QuestionDTO> questions) {
 		this.questions = questions;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 }

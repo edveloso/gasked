@@ -17,17 +17,19 @@
 package br.com.eveloso.gasked.jetty.web;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import br.com.eveloso.gasked.jetty.domain.Alternative;
-import br.com.eveloso.gasked.jetty.domain.Category;
 import br.com.eveloso.gasked.jetty.domain.Question;
+import br.com.eveloso.gasked.jetty.dto.PlayerDTO;
+import br.com.eveloso.gasked.jetty.dto.QuestionBuilder;
 import br.com.eveloso.gasked.jetty.service.MatchService;
 
 @Controller
@@ -36,49 +38,18 @@ public class MatchController {
 	@Autowired
 	private MatchService matchService;
 
-	@RequestMapping("/{jogador}")
+	@RequestMapping(value="/{" + "playerId" + "}")
 	@ResponseBody
-	public String helloWorld(@PathVariable(value="jogador") String jogadores) {
-		Question question = new Question();
-		Category category = new Category();
-		category.setName("evangelho");
-		question.setCategory(category);
-		question.setDescription("Quantos discípulos/apóstolos teve Jesus?");
-		List<Alternative> alternatives = new ArrayList<Alternative>();
-		Alternative alternative;
-
-		alternative = new Alternative();
-		alternative.setQuestion(question);
-		alternative.setResponse(false);
-		alternative.setValue("20");
-		alternatives.add(alternative);
-
-		alternative = new Alternative();
-		alternative.setQuestion(question);
-		alternative.setResponse(false);
-		alternative.setValue("10");
-		alternatives.add(alternative);
-
-		alternative = new Alternative();
-		alternative.setQuestion(question);
-		alternative.setResponse(true);
-		alternative.setValue("12");
-		alternatives.add(alternative);
-
-		alternative = new Alternative();
-		alternative.setQuestion(question);
-		alternative.setResponse(false);
-		alternative.setValue("8");
-		alternatives.add(alternative);
-
-		//
-		question.setAlternatives(alternatives);
-		//
-//		matchService.save(question);
-		
-		
+	public List<PlayerDTO> initGame(@MatrixVariable(pathVar="playerId") Map<String, LinkedList> jogadores) {
+		List<PlayerDTO> players = new ArrayList<PlayerDTO>();
 		List<Question> questions = matchService.getQuestions();
-		return questions.toString() +" -  "+ jogadores;
+		for(String key : jogadores.keySet()){
+				PlayerDTO playerDTO = new PlayerDTO();
+				playerDTO.setName((String) jogadores.get(key).get(0));
+				playerDTO.setQuestions(QuestionBuilder.build(questions));
+				players.add(playerDTO);
+		}
+		return players;
 	}
 
 	public MatchService getMatchService() {

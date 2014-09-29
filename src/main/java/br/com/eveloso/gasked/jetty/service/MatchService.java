@@ -30,6 +30,10 @@ public class MatchService {
 	@Autowired 
 	private QuestionDAO questionDAO;
 	
+	public void clearDataBase(){
+		questionDAO.deleteAll();
+	}
+	
 	public void save(Question question) {
 		questionDAO.save(question);
 	}

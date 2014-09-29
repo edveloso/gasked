@@ -64,12 +64,5 @@ public class Alternative {
 		this.question = question;
 	}
 
-	@Override
-	public String toString() {
-		return "Alternative [" + (id != null ? "id=" + id + ", " : "")
-				+ (value != null ? "value=" + value + ", " : "")
-				+ (response != null ? "response=" + response + ", " : "")
-				;
-	}
 	
 }

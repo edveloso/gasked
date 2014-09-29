@@ -12,18 +12,20 @@
 	<tx:annotation-driven />
 	<context:annotation-config />
 	<context:component-scan base-package="br.com.eveloso.gasked"></context:component-scan>
-<!-- 	<bean id="questionDAO" class="br.com.eveloso.gasked.jetty.domain.persistence.jpa.QuestionDAO"></bean> -->
-<!-- 	<bean id="matchService" class="br.com.eveloso.gasked.jetty.service.MatchService" > -->
-<!-- 	  <property name="questionDAO" ref="questionDAO"></property> -->
-<!-- 	</bean> -->
-	
+	<!-- <bean id="questionDAO" class="br.com.eveloso.gasked.jetty.domain.persistence.jpa.QuestionDAO"></bean> -->
+	<!-- <bean id="matchService" class="br.com.eveloso.gasked.jetty.service.MatchService" 
+		> -->
+	<!-- <property name="questionDAO" ref="questionDAO"></property> -->
+	<!-- </bean> -->
+
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName">
 			<value>org.apache.derby.jdbc.EmbeddedDriver</value>
 		</property>
 		<property name="url">
-			<value>jdbc:derby:/Users/edveloso/Projects/git/gasked/testdb;create=true</value> 
+			<value>jdbc:derby:/Users/edveloso/Projects/git/gasked/testdb;create=true
+			</value>
 		</property>
 		<property name="username">
 			<value>root</value>
@@ -53,4 +55,6 @@
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
+	
+
 </beans>

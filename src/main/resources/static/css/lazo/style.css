@@ -402,11 +402,12 @@ nav a#pull {
 	width: 64.5%;
 	margin: 0.4em 0 0.1em;
 	display: inline-block;
+	color: #000;
 }
 /*----*/
 .slide-text-info span{
 	background: rgba(216, 154, 206, 0.61);
-	color: #FFF;
+	color: #000;
 	text-transform: uppercase;
 	font-weight: 300;
 	padding: 0.2em 0.6em;
@@ -444,7 +445,7 @@ nav a#pull {
 	color:#FFF;
 }
 .slide-btns a.livedemo{
-	background:#AF48FE;
+	background:#0066FF;
 	color:#FFF;
 	font-size: 0.8em;
 	padding: 0.875em 2em;

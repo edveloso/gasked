@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import br.com.eveloso.gasked.jetty.domain.Question;
 
@@ -31,7 +31,13 @@ public class QuestionDAO  {
 	 * @see br.com.eveloso.gasked.domain.persistence.IDAO#getAll()
 	 */
 	public List<Question> getAll(){
-		return em.createQuery("select q from Question q", Question.class).getResultList();
+		TypedQuery<Question> query = em.createQuery("select q from Question q", Question.class);
+		query.setMaxResults(10);
+		return query.getResultList();
+	}
+
+	public void deleteAll() {
+		em.createQuery("delete from Question"); 
 	}
 	
 }

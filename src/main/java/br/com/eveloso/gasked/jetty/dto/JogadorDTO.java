@@ -4,7 +4,7 @@ public class JogadorDTO {
 
 	private String name;
 	
-	private PartidaDTO partida;
+	private PlayerDTO partida;
 
 	public String getName() {
 		return name;
@@ -14,11 +14,11 @@ public class JogadorDTO {
 		this.name = name;
 	}
 
-	public PartidaDTO getPartida() {
+	public PlayerDTO getPartida() {
 		return partida;
 	}
 
-	public void setPartida(PartidaDTO partida) {
+	public void setPartida(PlayerDTO partida) {
 		this.partida = partida;
 	}
 	

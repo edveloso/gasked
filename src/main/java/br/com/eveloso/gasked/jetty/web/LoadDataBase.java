@@ -20,6 +20,7 @@ public class LoadDataBase {
 	
 	@RequestMapping("/")
 	public String helloWorld() {
+		matchService.clearDataBase();
 		Question question;
 		Category category;
 		
