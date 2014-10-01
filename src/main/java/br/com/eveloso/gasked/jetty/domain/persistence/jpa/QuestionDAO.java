@@ -30,9 +30,10 @@ public class QuestionDAO  {
 	/* (non-Javadoc)
 	 * @see br.com.eveloso.gasked.domain.persistence.IDAO#getAll()
 	 */
-	public List<Question> getAll(){
+	public List<Question> getAll(int offset, int end){
 		TypedQuery<Question> query = em.createQuery("select q from Question q", Question.class);
-		query.setMaxResults(10);
+		query.setMaxResults(end);
+		query.setFirstResult(offset);
 		return query.getResultList();
 	}
 

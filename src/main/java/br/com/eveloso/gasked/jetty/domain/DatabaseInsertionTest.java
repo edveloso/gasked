@@ -17,7 +17,7 @@ public class DatabaseInsertionTest {
 				"applicationContext.xml");
 		MatchService bean = ctx.getBean(MatchService.class);
 		System.out.println(bean != null);
-		List<Question> questions = bean.getQuestions();
+		List<Question> questions = bean.getQuestions(0,9);
 		System.out.println(questions.size());
 	}
 	
@@ -64,7 +64,7 @@ public class DatabaseInsertionTest {
 		//
 		questionDAO.save(question);
 		//
-		for (Question q : questionDAO.getAll()) {
+		for (Question q : questionDAO.getAll(1,10)) {
 			System.out.print(q.getDescription());
 			System.out.println(" - " + q.getCategory().getName());
 			for (Alternative o : q.getAlternatives()) {

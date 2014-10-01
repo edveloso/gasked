@@ -38,8 +38,8 @@ public class MatchService {
 		questionDAO.save(question);
 	}
 	
-	public List<Question> getQuestions(){
-		List<Question> all = questionDAO.getAll();
+	public List<Question> getQuestions(int offset, int end){
+		List<Question> all = questionDAO.getAll(offset, end);
 		return all;
 	}
 

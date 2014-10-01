@@ -1,7 +1,7 @@
 ----------------------------------------------------------------
-Wed Oct 01 05:12:49 BRT 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.2.2 - (1181258): instance a816c00e-0148-cac4-d0d0-0000035e0320 
-on database directory memory:/Users/edveloso/Projects/git/gasked/testdb  with class loader java.net.URLClassLoader@12072edc 
+Wed Oct 01 06:06:19 BRT 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.2.2 - (1181258): instance a816c00e-0148-caf5-caad-0000035c8440 
+on database directory memory:/Users/edveloso/Projects/git/gasked/testdb  with class loader java.net.URLClassLoader@7eda34f5 
 Loaded from file:/Users/edveloso/.m2/repository/org/apache/derby/derby/10.8.2.2/derby-10.8.2.2.jar
 java.vendor=Apple Inc.
 java.runtime.version=1.6.0_65-b14-462-11M4609

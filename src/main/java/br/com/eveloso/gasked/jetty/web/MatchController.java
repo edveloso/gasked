@@ -42,12 +42,14 @@ public class MatchController {
 	@ResponseBody
 	public List<PlayerDTO> initGame(@MatrixVariable(pathVar="playerId") Map<String, LinkedList> jogadores) {
 		List<PlayerDTO> players = new ArrayList<PlayerDTO>();
-		List<Question> questions = matchService.getQuestions();
+		int offset = 0;
+		int end = 10;
 		for(String key : jogadores.keySet()){
 				PlayerDTO playerDTO = new PlayerDTO();
 				playerDTO.setName((String) jogadores.get(key).get(0));
-				playerDTO.setQuestions(QuestionBuilder.build(questions));
+				playerDTO.setQuestions(QuestionBuilder.build(matchService.getQuestions(offset, end)));
 				players.add(playerDTO);
+				offset += (end);
 		}	
 		return players;
 	}
