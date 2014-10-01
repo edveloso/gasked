@@ -48,7 +48,7 @@ public class MatchController {
 				playerDTO.setName((String) jogadores.get(key).get(0));
 				playerDTO.setQuestions(QuestionBuilder.build(questions));
 				players.add(playerDTO);
-		}
+		}	
 		return players;
 	}
 

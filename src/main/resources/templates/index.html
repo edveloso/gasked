@@ -61,7 +61,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								<li><a href="#" class="scroll">
 									{{player1.name}}
 									<span class="well">
-										<span ng-repeat="question in player2.questions">
+										<span ng-repeat="question in player1.questions">
 										 <img src="images/vermelho.jpg" width="20" height="20" class="img-circle" ng-show="question.correctAnswered == false"></img>  		
 										 <img src="images/verde.jpg" width="20" height="20" class="img-circle" ng-show="question.correctAnswered == true"></img>					<img src="images/preto.jpg" width="20" height="20" class="img-circle" ng-show="question.correctAnswered == null"></img>  
 										 </span>
@@ -110,43 +110,42 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			    <div  id="top" class="callbacks_container">
 			      <ul class="rslides" id="slider4">
 			        <li>
-			          <img src="images/turminha1.png" alt=""></img>
-			          <div class="caption bounceInDown" data-wow-delay="0.99s">
-			          	<div class="slide-text-info" >
-			          		<span>{{currentPlayer.questions[1].description}}</span>
-
-
-			          		<br/><strong><h1>Sua restposta esta errada</h1></strong>
-			          		
-			          		<div class="slide-btns" >
-			          			<a class="livedemo" href="#" ng-repeat="alternative in currentPlayer.questions[1].alternatives">{{alternative.value}}</a>			          						
-			          		</div>			          	
-			          	</div>
-			          </div>
-			        </li>
-			        <li>
-			          <img src="images/turminha2.png" alt=""></img>
-			        <div class="caption">
-			          	<div class="slide-text-info bounceInDown" data-wow-delay="0.99s">
-			         		<span>{{currentPlayer.questions[1].description}}</span>
-			          		<div class="slide-btns" >
-			          			<a class="livedemo" href="#" ng-repeat="alternative in currentPlayer.questions[1].alternatives">{{alternative.value}}</a>			          						
-			          		</div>	
-			          		<br/><br/><br/>
-			          	</div>
-			          </div>
-			        </li>
-			        <li>
 			          <img src="images/turminha3.png" alt=""></img>
-			          <div class="caption">
-			          	<div class="slide-text-info bounceInDown" data-wow-delay="0.99s">
-			         		<span>{{currentPlayer.questions[1].description}}</span>
-			          		<div class="slide-btns" >
-			          			<a class="livedemo" href="#" ng-repeat="alternative in currentPlayer.questions[1].alternatives">{{alternative.value}}</a>			          						
-			          		</div>	
+			          <div class="caption bounceInDown" >
+
+						<div ng-hide="startapp">
+							<div class="slide-text-info" >				          		
+				          		<br/><strong><h1>Oi gente, vamos jogar{{complement}}?</h1></strong>			          		
+				          		<div class="slide-btns" >
+				          			<h3>Primeiro Jogador:</h3> <input style="color: black" type="text" ng-model="jogador1"/><br/>
+				          			<h3>Segundo Jogador:</h3> <input style="color: black" type="text" ng-model="jogador2"/><br/>
+				          			<a class="livedemo" href="#" ng-click="jogar()">Começar</a>			          						
+				          		</div>			          	
+				          	</div>
+						</div>
+				
+						<div  ng-show="startapp">
+
+				          	<div class="slide-text-info" ng-show="answered">
+				          		
+				          		<br/><strong><h1>{{message}}</h1></strong>			          		
+				          		<div class="slide-btns" >
+				          			<a class="livedemo" href="#" ng-click="changeNextPlayer()">Próximo Jogador</a>			          						
+				          		</div>			          	
+				          	</div>
+
+				          	<div class="slide-text-info" ng-hide="answered">
+				          		<h1 style="color: green; ">{{currentPlayer.name}}:</h1><br/>
+				          		<span>{{currentPlayer.questions[questionNumber].description}}</span>			          	
+				          		<div class="slide-btns" >
+				          			<a class="livedemo" href="#" ng-repeat="alternative in currentPlayer.questions[questionNumber].alternatives" ng-click="answer($index)" >{{alternative.value}}</a>			          					
+				          		</div>			          	
+				          	</div>
 			          	</div>
+
+
 			          </div>
-			        </li>
+			        </li>			        
 			      </ul>
 			    </div>
 			    <div class="clearfix"> </div>
@@ -158,3 +157,4 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 	</body>
 </html>
+{{player2.name}}

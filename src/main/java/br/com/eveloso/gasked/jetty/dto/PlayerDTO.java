@@ -7,7 +7,7 @@ public class PlayerDTO {
 	
 	private String name;
 	
-	private Integer questionCount;
+	private int questionCount;
 	
 	private List<QuestionDTO> questions;
 
@@ -33,6 +33,10 @@ public class PlayerDTO {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public void setQuestionCount(int questionCount) {
+		this.questionCount = questionCount;
 	}
 	
 }
