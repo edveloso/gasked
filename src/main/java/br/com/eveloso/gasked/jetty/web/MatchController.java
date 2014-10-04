@@ -20,6 +20,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,21 +41,64 @@ public class MatchController {
 	@Autowired
 	private MatchService matchService;
 
+	private static Set<Integer> numeros = new TreeSet<Integer>(); 
+	
 	@RequestMapping(value="/{" + "playerId" + "}")
 	@ResponseBody
 	public List<PlayerDTO> initGame(@MatrixVariable(pathVar="playerId") Map<String, LinkedList> jogadores) {
+		numeros = (numeros.size() > 50) ? new TreeSet<Integer>() : numeros;
 		List<PlayerDTO> players = new ArrayList<PlayerDTO>();
-		int offset = 0;
-		int end = 10;
 		for(String key : jogadores.keySet()){
 				PlayerDTO playerDTO = new PlayerDTO();
 				playerDTO.setName((String) jogadores.get(key).get(0));
-				playerDTO.setQuestions(QuestionBuilder.build(matchService.getQuestions(offset, end)));
+				playerDTO.setQuestions(QuestionBuilder.build(getRandomQuestions(10))); 
 				players.add(playerDTO);
-				offset += (end);
 		}	
 		return players;
 	}
+	
+	private Set<Question> getRandomQuestions(Integer maxResults){
+		Set<Question> response = new TreeSet<Question>();
+		while (response.size() < maxResults) {
+			try {
+				int randomize = numeros.size() >= 50 ? complete() : randomize();
+				Question question = matchService.getQuestionById(randomize); 
+				response.add(question);
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		System.out.println(numeros); 
+		return response;
+	}
+	
+	private int complete(){
+		int numero = 1;
+		for (int i = 1; i < 60; i++) {
+			if(numeros.contains(i))
+				continue;
+			else {
+				numeros.add(i);
+				return i;
+			}
+		}
+		return numero;
+	}
+	
+	private static int randomize(){
+		Integer numero = null;
+		while(true){
+			numero = new Random().nextInt(60);
+			if(numero == 0 || numeros.contains(numero))
+				continue;
+			else {
+				numeros.add(numero);
+				break;
+			}
+		}
+		return numero;
+	}
+	
 
 	public MatchService getMatchService() {
 		return matchService;

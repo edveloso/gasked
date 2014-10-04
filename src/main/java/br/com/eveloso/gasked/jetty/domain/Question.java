@@ -1,5 +1,6 @@
 package br.com.eveloso.gasked.jetty.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -14,7 +15,7 @@ import org.hibernate.annotations.CascadeType;
 
 
 @Entity
-public class Question  {
+public class Question  implements Comparable<Question>{
 
 	@Id @GeneratedValue
 	private Integer id;
@@ -70,6 +71,11 @@ public class Question  {
 
 	public void setAlternatives(List<Alternative> alternatives) {
 		this.alternatives = alternatives;
+	}
+
+	@Override
+	public int compareTo(Question o) {
+		return this.id.compareTo(o.getId()); 
 	}
 
 }

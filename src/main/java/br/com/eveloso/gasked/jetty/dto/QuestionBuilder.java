@@ -1,7 +1,10 @@
 package br.com.eveloso.gasked.jetty.dto;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import br.com.eveloso.gasked.jetty.domain.Alternative;
 import br.com.eveloso.gasked.jetty.domain.Category;
@@ -9,8 +12,8 @@ import br.com.eveloso.gasked.jetty.domain.Question;
 
 public class QuestionBuilder {
 
-	public static List<QuestionDTO> build(List<Question> questions) {
-		List<QuestionDTO> response = new ArrayList<QuestionDTO>();
+	public static Set<QuestionDTO> build(Collection<Question> questions) {
+		Set<QuestionDTO> response = new TreeSet<QuestionDTO>();
 		for (Question question : questions) {
 			response.add(build(question)); 
 		}

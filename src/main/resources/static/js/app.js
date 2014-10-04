@@ -12,6 +12,7 @@ app.controller('MatchCtrl', ['$scope', '$http', function ($scope, $http) {
      $scope.startapp = false;
      $scope.jogador1 = "";
      $scope.jogador2 = "";
+     $scope.vencedor = null;
 
 
 
@@ -40,8 +41,9 @@ app.controller('MatchCtrl', ['$scope', '$http', function ($scope, $http) {
 
 //    findAllTasks('jogador1=Grupo1;jogador2=Grupo2');
 
-     $scope.$watch('questionNumber === 10', function() {        
-          $scope.complement = " novamente ";
+     $scope.$watch('startapp', function() {                
+        
+
       });
 
      $scope.jogar = function (){
@@ -88,6 +90,29 @@ app.controller('MatchCtrl', ['$scope', '$http', function ($scope, $http) {
         $scope.answered = true;
      }
 
+
+
+     function winner(){           
+          var contP1 = 0;
+          var contP2 = 0;
+          for (var i = 0; i < 10; i++) {
+              var q1 =  $scope.player1.questions[i];
+              var q2 =  $scope.player2.questions[i];
+              contP1 = q1.correctAnswered == true ? contP1 +1: contP1 ;
+              contP2 = q2.correctAnswered == true ? contP2 +1: contP2;
+              if(contP1 > contP2){
+                $scope.vencedor = $scope.player1.name;
+              }
+              else if(contP2 > contP1){
+                $scope.vencedor = $scope.player2.name;
+              }else{
+                $scope.vencedor = "empate";
+              }
+          }
+        }
+
+
+
     $scope.changeNextPlayer = function (){
         if($scope.currentPlayer.name == $scope.player1.name){           
            $scope.currentPlayer = $scope.player2;
@@ -97,13 +122,16 @@ app.controller('MatchCtrl', ['$scope', '$http', function ($scope, $http) {
             $scope.questionNumber = $scope.questionNumber + 1;  
             if($scope.questionNumber == 10){
                $scope.startapp = false; 
+                winner();
             }      
         }
         $scope.answered = false;
         
     }
 
+
  
+    
 
 
 

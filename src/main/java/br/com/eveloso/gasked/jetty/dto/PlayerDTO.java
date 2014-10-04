@@ -1,6 +1,6 @@
 package br.com.eveloso.gasked.jetty.dto;
 
-import java.util.List;
+import java.util.Set;
 
 
 public class PlayerDTO {
@@ -9,7 +9,7 @@ public class PlayerDTO {
 	
 	private int questionCount;
 	
-	private List<QuestionDTO> questions;
+	private Set<QuestionDTO> questions;
 
 	public Integer getQuestionCount() {
 		return questionCount;
@@ -19,11 +19,11 @@ public class PlayerDTO {
 		this.questionCount = questionCount;
 	}
 
-	public List<QuestionDTO> getQuestions() {
+	public Set<QuestionDTO> getQuestions() {
 		return questions;
 	}
 
-	public void setQuestions(List<QuestionDTO> questions) {
+	public void setQuestions(Set<QuestionDTO> questions) {
 		this.questions = questions;
 	}
 
@@ -38,5 +38,12 @@ public class PlayerDTO {
 	public void setQuestionCount(int questionCount) {
 		this.questionCount = questionCount;
 	}
+
+	@Override
+	public String toString() {
+		return "PlayerDTO ["
+				+ (questions != null ? "questions=" + questions : "") + "]";
+	}
+
 	
 }

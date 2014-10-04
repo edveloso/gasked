@@ -40,5 +40,9 @@ public class QuestionDAO  {
 	public void deleteAll() {
 		em.createQuery("delete from Question"); 
 	}
+
+	public Question get(Integer id) {
+		return em.find(Question.class, id); 
+	}
 	
 }

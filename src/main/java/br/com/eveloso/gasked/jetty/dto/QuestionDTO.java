@@ -2,7 +2,7 @@ package br.com.eveloso.gasked.jetty.dto;
 
 import java.util.List;
 
-public class QuestionDTO {
+public class QuestionDTO implements Comparable<QuestionDTO>{
 
 	private Integer id;
 	
@@ -52,6 +52,16 @@ public class QuestionDTO {
 
 	public void setCategory(CategoryDTO category) {
 		this.category = category;
+	}
+
+	@Override
+	public String toString() {
+		return "QuestionDTO [" + (id != null ? "id=" + id : "") + "]";
+	}
+
+	@Override
+	public int compareTo(QuestionDTO o) {
+		return this.id.compareTo(o.getId());
 	}
 
 	

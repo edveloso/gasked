@@ -114,8 +114,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			          <div class="caption bounceInDown" >
 
 						<div ng-hide="startapp">
-							<div class="slide-text-info" >				          		
-				          		<br/><strong><h1>Oi gente, vamos jogar{{complement}}?</h1></strong>			          		
+							<div class="slide-text-info" ng-show="vencedor">
+								<br/><strong><h1>Parabéns, o vencedor foi <br/>{{vencedor}}								
+							</h1>
+							<br/>
+							<div class="slide-btns" >
+							<a class="livedemo" href="/" >Vamos jogar de novo!</a>	
+							</div>	          					
+						</strong>
+							</div>
+
+
+							<div class="slide-text-info" ng-hide="vencedor">				          		
+				          		<br/><strong><h1>Oi gente, vamos jogar?</h1></strong>			          		
 				          		<div class="slide-btns" >
 				          			<h3>Primeiro Jogador:</h3> <input style="color: black" type="text" ng-model="jogador1"/><br/>
 				          			<h3>Segundo Jogador:</h3> <input style="color: black" type="text" ng-model="jogador2"/><br/>
@@ -135,7 +146,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				          	</div>
 
 				          	<div class="slide-text-info" ng-hide="answered">
-				          		<h1 style="color: green; ">{{currentPlayer.name}}:</h1><br/>
+				          		<h1 style="color: blue; font-weight: 400; ">{{currentPlayer.name}}:</h1><br/>
 				          		<span>{{currentPlayer.questions[questionNumber].description}}</span>			          	
 				          		<div class="slide-btns" >
 				          			<a class="livedemo" href="#" ng-repeat="alternative in currentPlayer.questions[questionNumber].alternatives" ng-click="answer($index)" >{{alternative.value}}</a>			          					

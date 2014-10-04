@@ -42,6 +42,10 @@ public class MatchService {
 		List<Question> all = questionDAO.getAll(offset, end);
 		return all;
 	}
+	
+	public Question getQuestionById(Integer id){
+		return questionDAO.get(id);
+	}
 
 	public QuestionDAO getQuestionDAO() {
 		return questionDAO;
